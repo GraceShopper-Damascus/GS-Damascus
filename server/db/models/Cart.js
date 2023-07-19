@@ -9,6 +9,9 @@ const Cart = db.define('cart', {
     total: {
         type: Sequelize.FLOAT,
         defaultValue: 0.00,
+        validate: {
+            min: 0.00
+        }
     },
 })
 
