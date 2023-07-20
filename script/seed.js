@@ -1,3 +1,55 @@
+const { faker } = require('@faker-js/faker');
+const {
+  db,
+  models: { User, Product, Cart, Order },
+} = require("../server/db");
+
+console.log('Beginning seed...🌱')
+
+const seed = async () => {
+
+  for (let i = 1; i < 51; i++) {
+    await User.create({
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      password: 'hotdog',
+      email: faker.internet.email(),
+      role: faker.helpers.arrayElement(['member', 'engineer', 'admin'])
+    })
+    
+    for (let j = 1; j < 2; j++) {
+      await Cart.create({
+        userId: i,
+      })
+    }
+
+    // for (let k = 1; k < 2; k++) {
+    //   await Order.create({
+    //     completed: false,
+    //     userId: i,
+    //   })
+    // }
+  }
+
+  for (let i = 1; i < 31; i++) {
+    await Product.create({
+      name: faker.commerce.productName(),
+      description: faker.commerce.productDescription(),
+      price: faker.commerce.price({ min: 10, max: 2000, dec: 2 }),
+      quantity: faker.number.int({ max: 2000 }),
+      imageUrl: faker.image.url(),
+      upc: faker.number.int({ min: 100000000001, max: 999999999999 }),
+      category: faker.commerce.department(),
+    })
+  }
+
+}
+
+db.sync({ force: true }).then(seed).then(() => { console.log("done seeding🌳") })
+
+
+// Keep below for reference
+
 // "use strict";
 
 // const {
@@ -102,52 +154,3 @@
 
 // // we export the seed function for testing purposes (see `./seed.spec.js`)
 // module.exports = seed;
-
-const { faker } = require('@faker-js/faker');
-const {
-  db,
-  models: { User, Product, Cart, Order },
-} = require("../server/db");
-
-console.log('Beginning seed...🌱')
-
-const seed = async () => {
-
-  for (let i = 1; i < 51; i++) {
-    await User.create({
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      password: 'hotdog',
-      email: faker.internet.email(),
-      role: faker.helpers.arrayElement(['member', 'engineer', 'admin'])
-    })
-    
-    for (let j = 1; j < 2; j++) {
-      await Cart.create({
-        userId: i,
-      })
-    }
-
-    // for (let k = 1; k < 2; k++) {
-    //   await Order.create({
-    //     completed: false,
-    //     userId: i,
-    //   })
-    // }
-  }
-
-  for (let i = 1; i < 31; i++) {
-    await Product.create({
-      name: faker.commerce.productName(),
-      description: faker.commerce.productDescription(),
-      price: faker.commerce.price({ min: 10, max: 2000, dec: 2 }),
-      quantity: faker.number.int({ max: 2000 }),
-      imageUrl: faker.image.url(),
-      upc: faker.number.int({ min: 100000000001, max: 999999999999 }),
-      category: faker.commerce.department(),
-    })
-  }
-
-}
-
-db.sync({ force: true }).then(seed).then(() => { console.log("done seeding🌳") })
