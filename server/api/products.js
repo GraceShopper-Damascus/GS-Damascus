@@ -13,3 +13,16 @@ router.get("/", async (req, res, next) => {
 });
 
 module.exports = router; 
+
+
+
+//Single Product: GET /api/product/:productId
+router.get('/:id', async(req,res,next)=>{
+    try{
+        const product = await Product.findByPk(req.params.id)
+        res.json(product)
+    }
+    catch(err){
+        next(err)
+    }
+})
