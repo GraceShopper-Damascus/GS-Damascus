@@ -128,12 +128,12 @@ const seed = async () => {
       })
     }
 
-    for (let k = 1; k < 2; k++) {
-      await Order.create({
-        completed: false,
-        userId: i,
-      })
-    }
+    // for (let k = 1; k < 2; k++) {
+    //   await Order.create({
+    //     completed: false,
+    //     userId: i,
+    //   })
+    // }
   }
 
   for (let i = 1; i < 31; i++) {
