@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const { Product } = require("../db");
 
 //GET ALL Products 
@@ -12,7 +11,6 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-module.exports = router; 
 
 
 
@@ -26,3 +24,37 @@ router.get('/:id', async(req,res,next)=>{
         next(err)
     }
 })
+
+
+
+// Cart
+router.post('/', async (req, res) => {
+  try {
+    const { name, description, price, quantity, imageUrl, upc, productId } = req.body;
+    const product = await Product.findByPk(productId);
+
+  
+
+    const cartProduct = {
+      productId: productId,
+      name: name,
+      description: description,
+      price: price,
+      quantity: quantity,
+      imageUrl: imageUrl,
+      upc: upc,
+    };
+
+    const cart = [];
+
+    cart.push(cartProduct);
+
+    return res.status(200).json({ message: 'Product added to cart' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error in code' });
+  }
+});
+
+
+module.exports = router; 
