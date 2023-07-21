@@ -23,6 +23,7 @@ const Navbar = () => {
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
+            <Link to="/products">All Products</Link>
           </div>
         ) : (
           <div>
