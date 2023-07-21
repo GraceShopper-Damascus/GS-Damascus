@@ -3,7 +3,9 @@ const {
   db,
   models: { User, Product, Cart, Order },
 } = require("../server/db");
-console.log('Beginning seed...:seedling:')
+
+console.log('Beginning seed...🌱')
+
 const seed = async () => {
   for (let i = 1; i < 51; i++) {
     await User.create({
@@ -18,13 +20,8 @@ const seed = async () => {
         userId: i,
       })
     }
-    // for (let k = 1; k < 2; k++) {
-    //   await Order.create({
-    //     completed: false,
-    //     userId: i,
-    //   })
-    // }
   }
+
   for (let i = 1; i < 31; i++) {
     await Product.create({
       name: faker.commerce.productName(),
@@ -37,7 +34,7 @@ const seed = async () => {
     })
   }
 }
-db.sync({ force: true }).then(seed).then(() => { console.log("done seeding:deciduous_tree:") })
+db.sync({ force: true }).then(seed).then(() => { console.log("done seeding🌳") })
 
 
 // Keep below for reference

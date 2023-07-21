@@ -7,7 +7,7 @@ const Product = require('./models/Product')
 const Order = require('./models/Order')
 const Cart = require('./models/Cart')
 
-//associations here!
+
 User.hasOne(Cart)
 Cart.belongsTo(User)
 
