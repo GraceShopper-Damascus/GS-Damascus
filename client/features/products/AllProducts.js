@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAllProducts } from "./productsSlice";
-import Product from "./ProductCard";
+import ProductCard from "./ProductCard";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const AllProducts = () => {
       <h1>List of Products:</h1>
       <div>
         {products.map((product) => (
-          <Product product={product} key={product.id} />
+          <ProductCard product={product} key={product.id} />
         ))}
       </div>
     </>
