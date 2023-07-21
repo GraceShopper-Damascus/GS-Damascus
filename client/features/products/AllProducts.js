@@ -15,8 +15,8 @@ const AllProducts = () => {
 
   return (
     <>
-      <h1>List of Products:</h1>
-      <div>
+      <h1 className="products-container-header">List of Products:</h1>
+      <div className="products-container">
         {products.map((product) => (
           <ProductCard product={product} key={product.id} />
         ))}
