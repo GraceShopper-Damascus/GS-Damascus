@@ -3,11 +3,8 @@ const {
   db,
   models: { User, Product, Cart, Order },
 } = require("../server/db");
-
-console.log('Beginning seed...🌱')
-
+console.log('Beginning seed...:seedling:')
 const seed = async () => {
-
   for (let i = 1; i < 51; i++) {
     await User.create({
       firstName: faker.person.firstName(),
@@ -16,13 +13,11 @@ const seed = async () => {
       email: faker.internet.email(),
       role: faker.helpers.arrayElement(['member', 'engineer', 'admin'])
     })
-    
     for (let j = 1; j < 2; j++) {
       await Cart.create({
         userId: i,
       })
     }
-
     // for (let k = 1; k < 2; k++) {
     //   await Order.create({
     //     completed: false,
@@ -30,7 +25,6 @@ const seed = async () => {
     //   })
     // }
   }
-
   for (let i = 1; i < 31; i++) {
     await Product.create({
       name: faker.commerce.productName(),
@@ -42,10 +36,8 @@ const seed = async () => {
       category: faker.commerce.department(),
     })
   }
-
 }
-
-db.sync({ force: true }).then(seed).then(() => { console.log("done seeding🌳") })
+db.sync({ force: true }).then(seed).then(() => { console.log("done seeding:deciduous_tree:") })
 
 
 // Keep below for reference

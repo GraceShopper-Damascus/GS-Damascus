@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
 import { me } from './store';
+import SignUpForm from '../features/auth/SignUpForm';
+import AllProducts from '../features/products/AllProducts';
 
 /**
  * COMPONENT
@@ -21,22 +23,24 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/products" element={<AllProducts />} />
           <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
         </Routes>
       ) : (
         <Routes>
-          <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
           />
           <Route
             path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
+            element={<SignUpForm name="signup" displayName="Sign Up" />}
+          />
+          <Route path="/products" element={<AllProducts />} />
+          <Route
+            path="/*"
+            element={<AuthForm name="login" displayName="Login" />}
           />
         </Routes>
       )}
