@@ -20,10 +20,11 @@ const Navbar = () => {
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
-            <button type="button" onClick={logoutAndRedirectHome}>
+            <Link to="/products">All Products</Link>
+
+            <button className="logout-btn" type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
-            <Link to="/products">All Products</Link>
           </div>
         ) : (
           <div>
