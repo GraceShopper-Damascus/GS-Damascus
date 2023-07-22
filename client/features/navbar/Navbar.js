@@ -13,8 +13,13 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <h1>SWEbay</h1>
+    <div className='nav-bar'>
+      <div className='logo-container'>
+        <img src='https://img.freepik.com/premium-vector/yellow-sign-with-goat-it_862489-2404.jpg' alt='goat' className='goat-logo'/>
+
+      </div>
+      
+      <h1 className='nav-title'>SWEbay.</h1>
       <nav>
         {isLoggedIn ? (
           <div>
