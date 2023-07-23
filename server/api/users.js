@@ -81,11 +81,11 @@ router.put("/:userId/cart/:productId", async (req, res, next) => {
 // POST /api/users/:userId/cart
 router.post("/:userId/cart", async (req, res, next) => {
   try {
-    const { userId } = req.params.id;
+    const { userId } = req.params;
     const { productId } = req.body;
 
     // Check if the logged-in user id is a match
-    if (req.params.id !== userId) {
+    if (req.params.userId !== userId) {
       return res.status(403).json({ message: "unauthorized user!" });
     }
 
@@ -102,18 +102,8 @@ router.post("/:userId/cart", async (req, res, next) => {
       return res.status(404).json({ message: "Product not found!" });
     }
 
-    // Check if the product is already in the cart
-    const existingCartItem = user.cart.find((item) => item.id === productId);
-
-    if (existingCartItem) {
-      // If the product is already in the cart, update the quantity
-      await existingCartItem.cartProducts.update({
-        quantity: existingCartItem.cartProducts.quantity + 1,
-      });
-    } else {
-      // If the product is not in the cart, add it with quantity 1
-      await Cart.addProduct(product, { through: { quantity: 1 } });
-    }
+    // Add the product to the cart with quantity 1
+    await user.cart.addProduct(product, { through: { quantity: 1 } });
 
     // Fetch the updated user with the cart
     const updatedUser = await User.findByPk(userId, {
