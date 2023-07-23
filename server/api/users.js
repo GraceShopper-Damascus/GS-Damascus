@@ -28,6 +28,9 @@ router.get("/:id", async (req, res, next) => {
       attributes: ["id", "email"],
       include: {
         model: Cart,
+        // include: {
+        //   cartProduct
+        // }
       },
     });
 
