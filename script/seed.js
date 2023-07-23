@@ -15,11 +15,11 @@ const seed = async () => {
       email: faker.internet.email(),
       role: faker.helpers.arrayElement(['member', 'engineer', 'admin'])
     })
-    // for (let j = 1; j < 2; j++) {
-    //   await Cart.create({
-    //     userId: i,
-    //   })
-    // }
+    for (let j = 1; j < 2; j++) {
+      await Cart.create({
+        userId: i,
+      })
+    }
   }
 
   for (let i = 1; i < 31; i++) {
