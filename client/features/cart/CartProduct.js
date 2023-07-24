@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 const CartProduct = ({ product }) => {
   const dispatch = useDispatch();
+  const cartProduct = useSelector(state => state.cart.UserCart.products)
 
   return(
     <div className="cart-product-container">
