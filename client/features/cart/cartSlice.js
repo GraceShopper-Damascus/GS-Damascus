@@ -14,7 +14,11 @@ export const getUserCart = createAsyncThunk('user/getCart', async(userId) => {
 export const cartSlice = createSlice({
   name:'cart',
   initialState: {
-    cart: {},
+    UserCart: {
+      products: [],
+      quantity: 0,
+      total: 0.00,
+    },
   },
   extraReducers(builder) {
     builder

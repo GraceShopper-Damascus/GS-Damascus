@@ -6,7 +6,7 @@ import CartProduct from "./CartProduct";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.cart)
+  const products = useSelector(state => state.cart.UserCart.products)
   const {userId} = useParams()
 
   useEffect(() => {

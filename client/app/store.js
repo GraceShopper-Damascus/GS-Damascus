@@ -9,7 +9,6 @@ const store = configureStore({
     auth: authReducer,
     products: productsReducer,
     cart: cartReducer,
-
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

@@ -54,7 +54,7 @@ router.put("/:userId/cart/:productId", async (req, res, next) => {
         .status(403)
         .json({ message: "unauthorized user!" });
     }
-    // Update the cart item quantity 
+    // Update the cart item quantity
     await Cart.update(
       { quantity: quantity },
       {
@@ -118,25 +118,25 @@ router.post("/:userId/cart", async (req, res, next) => {
 
 
 
-//get indivitual users cart: GET api/users/:userId/cart
+//get individual users cart: GET api/users/:userId/cart
 router.get("/:userId/cart", async (req,res,next) => {
   try{
-    const { userId } = req.params; 
+    const { userId } = req.params;
 
     const user = await User.findByPk (userId, {
-      attributes: ["id", "email"], 
+      // attributes: ["id", "email"],
       include: {
-        model: Cart, 
-        include: { model: Product}, 
-      }, 
+        model: Cart,
+        include: { model: Product},
+      },
     })
 
-    res.json(user.cart); 
+    res.json(user.cart);
   } catch (err) {
     next(err)
   }
 
-}); 
+});
 
 //put request for cart (maybe)
 
