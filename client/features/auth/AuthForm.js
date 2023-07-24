@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { authenticate } from '../../app/store';
 import Login from './Login';
 import SignUpForm from './SignUpForm';
 
