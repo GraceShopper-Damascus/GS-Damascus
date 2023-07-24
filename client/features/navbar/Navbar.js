@@ -18,7 +18,7 @@ const Navbar = () => {
         <img src='https://img.freepik.com/premium-vector/yellow-sign-with-goat-it_862489-2404.jpg' alt='goat' className='goat-logo'/>
 
       </div>
-      
+
       <h1 className='nav-title'>SWEbay.</h1>
       <nav>
         {isLoggedIn ? (
@@ -26,6 +26,7 @@ const Navbar = () => {
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">All Products</Link>
+            <Link to="/users/:userId/cart">Cart</Link>
 
             <button className="logout-btn" type="button" onClick={logoutAndRedirectHome}>
               Logout
@@ -37,6 +38,7 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/products">All Products</Link>
+            <Link to="/users/:userId/cart">Cart</Link>
           </div>
         )}
       </nav>

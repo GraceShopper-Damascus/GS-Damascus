@@ -7,6 +7,7 @@ import { me } from './store';
 import SignUpForm from '../features/auth/SignUpForm';
 import AllProducts from '../features/products/AllProducts';
 import SingleProduct from '../features/products/SingleProduct';
+import Cart from '../features/cart/Cart';
 
 /**
  * COMPONENT
@@ -45,6 +46,7 @@ const AppRoutes = () => {
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
           />
+          <Route path="/users/:userId/cart" element={<Cart/>} />
         </Routes>
       )}
     </div>
