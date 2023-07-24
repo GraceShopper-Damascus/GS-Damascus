@@ -6,11 +6,12 @@ import { useSelector } from "react-redux";
  */
 const Home = (props) => {
   const { firstName, lastName } = useSelector((state) => state.auth.me);
+  const isLoggedIn = useSelector((state) => !!state.auth.me);
 
   return (
     <div>
       <h3>
-        Welcome {firstName} {lastName},
+        {isLoggedIn ? `Welcome ${firstName} ${lastName},` : 'Welcome to SWEbay'}
       </h3>
       <p>
         Welcome to SWEbay - Your Ultimate Destination for Software Engineering
