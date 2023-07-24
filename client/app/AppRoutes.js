@@ -23,6 +23,7 @@ const AppRoutes = () => {
 
   return (
     <div>
+      {/* if you find the ternary structure below to be a bit hard to deal with, consider creating variables above the return like `const loggedInRoutes = <Routes>...</Routes>` and then your ternary below can be simplifed to `isLoggedIn ? loggedInRoutes : guestRoutes` */}
       {isLoggedIn ? (
         <Routes>
           <Route path="/home" element={<Home />} />

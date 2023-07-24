@@ -8,8 +8,10 @@ const Product = require('./models/Product')
 const Order = require('./models/Order')
 const Cart = require('./models/Cart')
 
+// I think if you're using this, CartProducts.js can be deleted
 const CartProduct = db.define("cartProduct", {
   quantity: Sequelize.INTEGER,
+  // you might not need this -- the product already has a price, right?
   price: Sequelize.INTEGER,
 })
 

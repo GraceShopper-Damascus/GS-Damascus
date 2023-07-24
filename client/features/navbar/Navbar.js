@@ -21,6 +21,7 @@ const Navbar = () => {
 
       <h1 className='nav-title'>SWEbay.</h1>
       <nav>
+        {/* same feedback here as for the Routes -- it's not necessary to break out the links into variables (defined before the return and used in the return) but it might help to improve the readability when the sections returned from the ternary are long/complex */}
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}

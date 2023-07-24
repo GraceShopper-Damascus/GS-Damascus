@@ -28,6 +28,8 @@ router.get("/:id", async (req, res, next) => {
       attributes: ["id", "email"],
       include: {
         model: Cart,
+        // if you'd like to include everything, recursively, here's a doc you might find helpful:
+        // https://sequelize.org/docs/v6/advanced-association-concepts/eager-loading/#including-everything
         // include: {
         //   cartProduct
         // }

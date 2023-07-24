@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 /**
  * COMPONENT
  */
+// this compomnent feels like an introduction to the site, but it uses the auth info and it looks like it's only displayed to logged-in users. Just wanted to make sure that was intentional! Is there anything similar for people who aren't logged in?
 const Home = (props) => {
   const { firstName, lastName } = useSelector((state) => state.auth.me);
 
