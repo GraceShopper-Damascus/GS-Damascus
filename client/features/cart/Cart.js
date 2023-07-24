@@ -7,19 +7,24 @@ import CartProduct from "./CartProduct";
 const Cart = () => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.cart.UserCart.products)
-  const {userId} = useParams();
+  const userId = useSelector(state => state.auth.me.id)
 
   useEffect(() => {
     dispatch(getUserCart(userId))
   }, [dispatch])
   console.log(products)
 
-  return(
+
+  return (
     <div className="cart-container">
       <h3>Order Items:</h3>
-      {products.map((product) => (
-        <CartProduct product={product} key={product.id}/>
-      ))}
+      {products && products.length ? (
+        products.map((product) => (
+          <CartProduct product={product} key={product.id} />
+        ))
+      ) : (
+        <h4>No products in cart</h4>
+      )}
       <button>Checkout</button>
     </div>
   )

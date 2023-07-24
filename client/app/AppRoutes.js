@@ -21,35 +21,28 @@ const AppRoutes = () => {
     dispatch(me());
   }, []);
 
+  const loggedInRoutes = <Routes>
+    <Route path="/home" element={<Home />} />
+    <Route path="/products" element={<AllProducts />} />
+    <Route path="/products/:id" element={<SingleProduct />} />
+    <Route path="/users/:userId/cart" element={<Cart />} />
+    <Route path="/*" element={<Home />} />
+  </Routes>
+
+  const guestRoutes = <Routes>
+    <Route path="/login" element={<AuthForm name="login" displayName="Login" />} />
+    <Route path="/signup" element={<SignUpForm name="signup" displayName="Sign Up" />} />
+    <Route path="/home" element={<Home />} />
+    <Route path="/products" element={<AllProducts />} />
+    <Route path="/products/:id" element={<SingleProduct />} />
+    <Route path="/users/:userId/cart" element={<Cart />} />
+    <Route path="/*" element={<AuthForm name="login" displayName="Login" />} />
+  </Routes>
+
+
   return (
     <div>
-      {isLoggedIn ? (
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/products" element={<AllProducts />} />
-          <Route path="/products/:id" element={<SingleProduct />} />
-          <Route path="/users/:userId/cart" element={<Cart/>} />
-          <Route path="/*" element={<Home />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route
-            path="/login"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
-            path="/signup"
-            element={<SignUpForm name="signup" displayName="Sign Up" />}
-          />
-          <Route path="/products" element={<AllProducts />} />
-          <Route path="/products/:id" element={<SingleProduct />} />
-          <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          {/* <Route path="/users/:userId/cart" element={<Cart/>} /> */}
-        </Routes>
-      )}
+      {isLoggedIn ? loggedInRoutes : guestRoutes }
     </div>
   );
 };
