@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(getUserCart.fulfilled, (state, {payload}) => {
-        state.UserCart = payload;
+        state.cart = payload;
       })
   },
 })
