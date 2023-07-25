@@ -10,12 +10,10 @@ const Cart = require('./models/Cart')
 
 const CartProduct = db.define("cartProduct", {
   quantity: Sequelize.INTEGER,
-  price: Sequelize.INTEGER,
 })
 
 const OrderProduct = db.define("orderProduct", {
   quantity: Sequelize.INTEGER,
-  price: Sequelize.INTEGER,
 })
 
 // associations go here!
