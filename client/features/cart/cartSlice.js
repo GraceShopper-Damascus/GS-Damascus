@@ -12,11 +12,13 @@ export const getUserCart = createAsyncThunk('user/getCart', async(userId) => {
   }
 })
 
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]")
+
 export const cartSlice = createSlice({
   name:'cart',
   initialState: {
     UserCart: {
-      products: [],
+      products: cartFromLocalStorage,
       quantity: 0,
       total: 0.00,
     },

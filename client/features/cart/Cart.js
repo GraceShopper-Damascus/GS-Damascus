@@ -5,14 +5,19 @@ import CartProduct from "./CartProduct";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.cart.UserCart.products)
-  const userId = useSelector(state => state.auth.me.id)
+  const products = useSelector((state) => state.cart.UserCart.products);
+  const userId = useSelector((state) => state.auth.me.id);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
-  useEffect(() => {
-    dispatch(getUserCart(userId))
-  }, [dispatch])
-  console.log(products)
-
+  if (isLoggedIn) {
+    useEffect(() => {
+      dispatch(getUserCart(userId));
+    }, [dispatch]);
+  } else {
+    useEffect(() => {
+      localStorage.setItem("cart", JSON.stringify(products));
+    }, [products]);
+  }
 
   return (
     <div className="cart-container">
@@ -26,7 +31,7 @@ const Cart = () => {
       )}
       <button>Checkout</button>
     </div>
-  )
-}
+  );
+};
 
 export default Cart;
