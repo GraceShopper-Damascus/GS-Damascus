@@ -28,9 +28,9 @@ const User = db.define('user', {
   password: {
     type: Sequelize.STRING,
   },
-  role: {
-    type: Sequelize.ENUM('member', 'admin', 'engineer'),
-    defaultValue: 'member'
+  isAdmin: {
+    type: Sequelize.BOOLEAN(),
+    defaultValue: false
   }
 })
 

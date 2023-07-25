@@ -1,7 +1,7 @@
 const { faker } = require('@faker-js/faker');
 const {
   db,
-  models: { User, Product, Cart, Order },
+  models: { User, Product, Cart },
 } = require("../server/db");
 
 console.log('Beginning seed...🌱')
@@ -13,7 +13,7 @@ const seed = async () => {
       lastName: faker.person.lastName(),
       password: 'hotdog',
       email: faker.internet.email(),
-      role: faker.helpers.arrayElement(['member', 'engineer', 'admin'])
+      isAdmin: faker.helpers.arrayElement([true, false])
     })
     for (let j = 1; j < 2; j++) {
       await Cart.create({
