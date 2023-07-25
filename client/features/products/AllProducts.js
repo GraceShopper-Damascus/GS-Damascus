@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getAllProducts } from "./productsSlice";
-import ProductCard from "./ProductCard";
+// import ProductCard from "./AllProductsCard";
+import AllProductsCard from "./AllProductsCard";
+// import { addToCart } from "../cart/cartSlice";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ const AllProducts = () => {
       <h1 className="products-container-header">List of Products:</h1>
       <div className="products-container">
         {products.map((product) => (
-          <ProductCard product={product} key={product.id} />
+          <AllProductsCard product={product} key={product.id} />
         ))}
       </div>
     </>
