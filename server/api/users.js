@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { User, Cart, Product},
+  models: { User, Cart, Product },
 } = require("../db");
 module.exports = router;
 
@@ -28,9 +28,6 @@ router.get("/:id", async (req, res, next) => {
       attributes: ["id", "email"],
       include: {
         model: Cart,
-        // include: {
-        //   cartProduct
-        // }
       },
     });
 
@@ -119,15 +116,14 @@ router.post("/:userId/cart", async (req, res, next) => {
 
 
 //get individual users cart: GET api/users/:userId/cart
-router.get("/:userId/cart", async (req,res,next) => {
-  try{
+router.get("/:userId/cart", async (req, res, next) => {
+  try {
     const { userId } = req.params;
 
-    const user = await User.findByPk (userId, {
-      // attributes: ["id", "email"],
+    const user = await User.findByPk(userId, {
       include: {
         model: Cart,
-        include: { model: Product},
+        include: { model: Product },
       },
     })
 
