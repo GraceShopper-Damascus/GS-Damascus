@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getAllProducts } from "./productsSlice";
 import ProductCard from "./ProductCard";
+// import { addToCart } from "../cart/cartSlice";
 
 const AllProducts = () => {
   const dispatch = useDispatch();

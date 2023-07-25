@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
+import addToCartReducer, { addToCart } from "./addToCartReducer";
 
 //thunk to get user Cart
 export const getUserCart = createAsyncThunk('user/getCart', async(userId) => {
@@ -25,6 +26,7 @@ export const cartSlice = createSlice({
       .addCase(getUserCart.fulfilled, (state, {payload}) => {
         state.cart = payload;
       })
+      .addCase(addToCart, addToCartReducer)
   },
 })
 

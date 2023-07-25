@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { getSingleProduct } from "./productsSlice";
-import SingleProductPage from "./SPcomponent";
+import SingleProductPage from "./SingleProductPage";
 
 const SingleProduct = ()=> {
   const dispatch = useDispatch();
