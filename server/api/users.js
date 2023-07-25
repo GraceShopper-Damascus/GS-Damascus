@@ -138,6 +138,23 @@ router.get("/:userId/cart", async (req,res,next) => {
 
 });
 
-//put request for cart (maybe)
 
 
+
+// Delete User from db: Delete /api/users/:userId
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    await user.destroy();
+
+    //create object to hold updated product info and a update message
+    const details = {
+      message: "User Deleted 🗑️ ",
+      user,
+    };
+    //send details object as JSON response
+    res.json(details);
+  } catch (err) {
+    next(err);
+  }
+});

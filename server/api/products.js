@@ -24,6 +24,9 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+
+
+
 // update product details: PUT /api/products/:productId
 router.put("/:id", async (req, res, next) => {
   try {
@@ -60,5 +63,30 @@ router.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+//create new product: POST /api/products  
+router.post("/", async (req, res, next) => {
+  try {
+    const { name, price, quantity, description, image, upc, category} = req.body;
+
+  
+    const newProduct = await Product.create({
+      name,
+      price,
+      quantity,
+      description,
+      //the following are optional
+      image, 
+      upc, 
+      category,
+    });
+
+    // Send the newly created product as the response
+    res.json(newProduct);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 module.exports = router;
