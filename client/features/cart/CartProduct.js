@@ -9,7 +9,7 @@ const CartProduct = ({ product }) => {
     <div className="cart-product-container">
       <h3>{product.name}</h3>
       <h3>Price: ${product.price}</h3>
-      <img src={product.imgUrl}/>
+      <img src={product.imageUrl}/>
       <h3>Quantity: {product.quantity}</h3>
     </div>
   );
