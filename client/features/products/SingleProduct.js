@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { getSingleProduct } from "./productsSlice";
-import SingleProductPage from "./SingleProductPage";
+import SingleProductCard from "./SingleProductCard";
 
 const SingleProduct = ()=> {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const SingleProduct = ()=> {
 
     return(
         <div className="single-product">
-            <SingleProductPage product={product} />
+            <SingleProductCard product={product} />
         </div>
     );
 };
