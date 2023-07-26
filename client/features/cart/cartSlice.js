@@ -65,11 +65,14 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk, current } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 //thunk to get user Cart
-export const getUserCart = createAsyncThunk("user/getCart", async (userId) => {
+export const getUserCart = createAsyncThunk("user/getCart", async (userId) => { 
   try {
+    console.log("get user cart is running", userId)
     const { data } = await axios.get(`/api/users/${userId}/cart`);
+    console.log ("this is gonna say axios not defined", data)
     return data;
   } catch (err) {
     return err.message;
@@ -88,7 +91,8 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       console.log("YOOOOOO THIS IS THE STATE", current(state))
-      const itemInCart = state.UserCart.products.find((item) => item.id === action.payload.id);
+      let products = state.UserCart.products
+      const itemInCart = products.find((item) => item.id === action.payload.id);
       if (itemInCart) {
         itemInCart.quantity++;
       } else {
@@ -112,6 +116,12 @@ const cartSlice = createSlice({
       state.UserCart = removeItem;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserCart.fulfilled, (state, { payload }) => {
+        state.UserCart = payload;
+      })  
+  }
 });
 
 export const cartReducer = cartSlice.reducer;

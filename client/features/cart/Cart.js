@@ -1,35 +1,46 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserCart } from "./cartSlice";
 import CartProduct from "./CartProduct";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.cart.UserCart.products)
+  const savedCart = useSelector(state=> state.savedCart.UserCart)
   const userId = useSelector(state => state.auth.me.id)
-
-  const getTotal = () => {
-    let totalQuantity = 0;
-    let totalPrice = 0;
-    products.forEach((item) => {
-      totalQuantity += item.quantity;
-      totalPrice += item.price * item.quantity;
-    });
-    return { totalPrice, totalQuantity };
-  };
+  const [numProducts, setNumProducts] = useState(0)
+  const [orderTotal, setOrderTotal] = useState(0)
 
 
   useEffect(() => {
-    dispatch(getUserCart(userId))
-  }, [dispatch])
-  console.log(products)
+    console.log("savedCart", savedCart)
+    const getTotal = () => {
+      let totalQuantity = 0;
+      let totalPrice = 0;
+      savedCart.products.forEach((item) => {
+        totalQuantity += item.quantity;
+        totalPrice += item.price * item.quantity;
+      });
+      return { totalPrice, totalQuantity };
+    };
+
+    if (savedCart && savedCart.products && savedCart.products.length > 0) {
+    setOrderTotal(getTotal().totalPrice);
+    setNumProducts(getTotal().totalQuantity);
+    }
+
+  }, [savedCart])
+
+  // useEffect(() => {
+  //   if (userId!=null) dispatch(getUserCart(userId))
+  // }, [dispatch, userId])
+  
 
 
   return (
     <div className="cart-container">
       <h3>Order Items:</h3>
-      {products && products.length ? (
-        products.map((product) => (
+      {savedCart && savedCart.products && savedCart.products.length ? (
+        savedCart.products.map((product) => (
           <CartProduct product={product} key={product.id} />
         ))
 
@@ -39,9 +50,9 @@ const Cart = () => {
       <button>Checkout</button>
       <div>
         <p className="total__p">
-          total ({getTotal().totalQuantity} items)
+          total ({numProducts} items)
           :{" "}
-          <strong> ${getTotal().totalPrice}</strong>
+          <strong> ${orderTotal}</strong>
         </p>
         </div>
     </div>

@@ -4,7 +4,7 @@ import { incrementQuantity, decrementQuantity, removeItem } from "./cartSlice";
 
 const CartProduct = ({ product }) => {
   const dispatch = useDispatch();
-  const cartProduct = useSelector((state) => state.cart.UserCart.products);
+  const cartProduct = useSelector((state) => state.savedCart.UserCart.products);
 
   // const getTotal = () => {
   //   let totalQuantity = 0;

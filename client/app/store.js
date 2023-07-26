@@ -26,8 +26,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     products: productsReducer,
-    cart: cartReducer,
-    counter: persistedReducer,
+    savedCart: persistedReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: {
