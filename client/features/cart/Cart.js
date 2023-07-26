@@ -8,6 +8,17 @@ const Cart = () => {
   const products = useSelector(state => state.cart.UserCart.products)
   const userId = useSelector(state => state.auth.me.id)
 
+  const getTotal = () => {
+    let totalQuantity = 0;
+    let totalPrice = 0;
+    products.forEach((item) => {
+      totalQuantity += item.quantity;
+      totalPrice += item.price * item.quantity;
+    });
+    return { totalPrice, totalQuantity };
+  };
+
+
   useEffect(() => {
     dispatch(getUserCart(userId))
   }, [dispatch])
@@ -21,10 +32,18 @@ const Cart = () => {
         products.map((product) => (
           <CartProduct product={product} key={product.id} />
         ))
+
       ) : (
         <h4>No products in cart</h4>
       )}
       <button>Checkout</button>
+      <div>
+        <p className="total__p">
+          total ({getTotal().totalQuantity} items)
+          :{" "}
+          <strong> ${getTotal().totalPrice}</strong>
+        </p>
+        </div>
     </div>
   )
 }
